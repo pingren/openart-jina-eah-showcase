@@ -1,0 +1,49 @@
+<html>
+<head>
+<script>
+function submitForm() {
+    var url = document.getElementById("url").value;
+    var image_preview = document.getElementById("img_preview");
+    image_preview.src = url;
+    var text = document.getElementById("text").value;
+    var server = document.getElementById("server").value;
+    var data = [{
+        uri: url, 
+        text
+    }];
+    var payload = {
+        data,
+        // targetExecutor: "",
+        // parameters: {},
+        execEndpoint: "/"
+    }
+    var url = server + "/post";
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        const uri = json?.data?.[0]?.matches?.[0]?.uri
+        var img_response = document.getElementById("img_response");        
+        img_response.src = uri
+    });
+}
+</script>
+</head>
+<body style="zoom: 2">
+    <form>
+        <input type="text" id="url" placeholder="Enter image url" value="https://dub.sh/jpg" />
+        <input type="text" id="text" placeholder="Enter text" />
+        <input type="text" id="server" placeholder="Enter server ip" value="http://localhost:8080" />
+        <input type="button" value="Submit" onclick="submitForm()" />
+    </form>
+    <img id="img_preview" />
+    <img id="img_response" />
+</body>
+</html>
+
+

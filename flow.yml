@@ -1,0 +1,15 @@
+jtype: Flow
+version: '1'
+with:
+  port: 8080
+  protocol: http # http or websocket or grpc
+  cors: true # enable CORS for http protocol
+  prefetch: 1
+executors:
+  - name: edit
+    replicas: 1
+    uses:
+      jtype: EditExecutor
+      metas:
+        py_modules:
+          - flow.py
