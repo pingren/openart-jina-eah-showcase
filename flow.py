@@ -81,7 +81,7 @@ class EditExecutor(Executor):
             doc.matches.append(_d)
 
 if __name__ == "__main__":
-    f = Flow().config_gateway(cors=True, protocol="http", port_expose=8080).add(
+    f = Flow().config_gateway(cors=True, protocol="http", port_expose=8088).add(
         uses=EditExecutor, prefetch=1)
 
     # f = Flow.load_config('flow.yml')

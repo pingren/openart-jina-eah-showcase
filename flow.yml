@@ -1,7 +1,7 @@
 jtype: Flow
 version: '1'
 with:
-  port: 8080
+  port: 8088
   protocol: http # http or websocket or grpc
   cors: true # enable CORS for http protocol
   prefetch: 1
