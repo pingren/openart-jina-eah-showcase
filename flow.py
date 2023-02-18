@@ -1,3 +1,7 @@
+import google.cloud.logging
+client = google.cloud.logging.Client()
+client.setup_logging()
+
 from jina import Flow, Executor, DocumentArray, Document, requests
 from typing import Dict
 from PIL import Image
