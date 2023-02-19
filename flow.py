@@ -40,10 +40,13 @@ class EditExecutor(Executor):
         setup_cloud_logging()
         # Load Model, cached in ./huggingface/cache
         print("Loading Model from local cache...")
+        logging.info("Loading Model from local cache...")
         pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(
             MODEL_ID,  revision=REVISION, local_files_only=True, cache_dir="./huggingface/cache", safety_checker=None, requires_safety_checker=False, torch_dtype=torch.float16)
+        logging.info("Model Loaded")
         if torch.cuda.is_available():
             self.pipe = pipe.to("cuda")
+            logging.info("Model Loaded to CUDA")
         else:
             try:
                 # Try to use mps for MacOS
@@ -64,10 +67,12 @@ class EditExecutor(Executor):
         # Image Output Parameters
         image_format = parameters.get("image_format", "jpeg")
         image_quality = parameters.get("image_quality", 95)
-
+        
+        logging.info(f"Generating {len(docs)} images with {steps} steps, {guidance_scale} guidance_scale, {image_guidance_scale} image_guidance_scale, {image_format} image_format, {image_quality} image_quality")
         # Generate Images
         for doc in docs:
             prompt = doc.text
+            logging.info(f"Generating image for prompt: {prompt}")
             image = download_image(doc.uri)
             edit_image = self.pipe(prompt, image=image, num_inference_steps=steps,
                                    image_guidance_scale=image_guidance_scale, guidance_scale=guidance_scale).images[0]
