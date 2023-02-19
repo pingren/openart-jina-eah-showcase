@@ -1,7 +1,5 @@
 import google.cloud.logging
-client = google.cloud.logging.Client()
-client.setup_logging()
-
+import logging
 from jina import Flow, Executor, DocumentArray, Document, requests
 from typing import Dict
 from PIL import Image
@@ -13,6 +11,18 @@ import torch
 
 MODEL_ID = "timbrooks/instruct-pix2pix"
 REVISION = "fp16"
+
+
+def setup_cloud_logging():
+    client = google.cloud.logging.Client()
+    client.setup_logging()
+    # get all loggers
+    loggers = [logging.getLogger(name)
+               for name in logging.root.manager.loggerDict]
+    # enable propagation for jina loggers, so that they will be handled by the root logger and sent to Cloud Logging
+    for logger in loggers:
+        if (logger.handlers and logger.handlers[0].__class__.__module__ == 'jina.logging.logger'):
+            logger.propagate = True
 
 
 def download_image(url):
@@ -27,6 +37,7 @@ class EditExecutor(Executor):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        setup_cloud_logging()
         # Load Model, cached in ./huggingface/cache
         print("Loading Model from local cache...")
         pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(
@@ -83,6 +94,7 @@ class EditExecutor(Executor):
             ).convert_blob_to_datauri()
             _d.text = prompt
             doc.matches.append(_d)
+
 
 if __name__ == "__main__":
     f = Flow().config_gateway(cors=True, protocol="http", port_expose=8088).add(
