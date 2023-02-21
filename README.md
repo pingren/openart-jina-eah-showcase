@@ -63,11 +63,11 @@ To start, we will shut down the VM and create a disk image, which may take a whi
 
 ### Create an Instance Group
 
-Second, let’s create the instance group with the template. The instances will automatically scale based on request-per-second metrics. We are required to set up a health checker to ensure the instances is up and running correctly.
+Second, let’s create the instance group with the template. The instances will automatically scale based on GPU utilization metrics.
 
 ### Configure Load Balancer
 
-Finally, we will configure the load balancer with the instance group as the backend.
+Finally, we will configure the load balancer with the instance group as the backend. We are required to set up a health checker to ensure the instances is up and running correctly and we set the balancing mode to “utilization” to ensure that the requests are evenly distributed.
 
 With these steps, we have covered all the necessary setup required. Now, we can perform a load test to verify that everything works as expected.
 
