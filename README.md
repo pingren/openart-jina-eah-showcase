@@ -1,8 +1,28 @@
 # ****GPU-Powered Jina AI Flows on GCP VMs: A Practical Guide****
 
-- You could [view the slides online](https://tome.app/pingren/gpu-powered-jina-ai-flows-on-gcp-vms-a-practical-guide-cldcvhcmp15aq6j40jjw8bia7) 
+This is accompanying code for the talk "****GPU-Powered Jina AI Flows on GCP VMs: A Practical Guide****" at [Jina EAH Community Meetup](https://www.meetup.com/jina-community-meetup/events/291182236/).
 
-- Below is rough/raw script for the [EAH event](https://www.meetup.com/jina-community-meetup/events/291182236/)
+- [View the slides online](https://tome.app/pingren/gpu-powered-jina-ai-flows-on-gcp-vms-a-practical-guide-cldcvhcmp15aq6j40jjw8bia7) 
+
+- [Watch the event recording](https://www.youtube.com/live/nurS1O1_e68?t=340) 
+
+### GCP Resources (covered in the talk)
+
+- Configuring VM and JINA Flows
+    1. [Create a VM](https://cloud.google.com/compute/docs/instances/create-start-instance)
+    2. [Use Deep Learning VM Image](https://cloud.google.com/deep-learning-vm/docs/introduction)
+- Logging and Monitoring
+    1. [Setup Cloud Logging For Python](https://cloud.google.com/logging/docs/setup/python)
+    2. [Monitor VM GPU metrics](https://cloud.google.com/compute/docs/gpus/monitor-gpus#ops-agent)
+- Deployment and Scaling for Production
+    1. [Create VM disk image](https://cloud.google.com/compute/docs/images/create-custom#create_image)
+    2. [Create instance templates](https://cloud.google.com/compute/docs/instance-templates/create-instance-templates)
+    3. [Create a managed instance group (MIG)](https://cloud.google.com/compute/docs/quickstart-mig)
+    4. [Autoscale MIG based on Monitoring metrics](https://cloud.google.com/compute/docs/autoscaler/scaling-cloud-monitoring-metrics#autoscale_based_on_a_custom_metric)
+    5. [Adding an instance group to a load balancer](https://cloud.google.com/compute/docs/instance-groups/adding-an-instance-group-to-a-load-balancer)
+
+
+> Below is rough/raw script for the recording
 ## Intro
 
 Hello everyone, I am a Software Engineer at OpenArt AI. I'm honored speaking to you today about hosting "****GPU-Powered Jina AI Flows on GCP VMs****". 
@@ -47,7 +67,7 @@ To keep the flow running even after restarting the VM, we will use PM2. We will 
 
 ## Logging and Monitoring
 
-Now let’s talking a little bit about logging and monitoring. I will introduce the minimal set up to get basic logging and monioring by lerveragign Cloud Logging API and Ops Agent. Let's set them up.
+Now let’s talking a little bit about logging and monitoring. I will introduce the minimal set up to get basic logging and monioring by leveraging Cloud Logging API and Ops Agent. Let's set them up.
 
 JINA integrates with OpenTelemetry. We could set up a Collector to collect, store, and visualize the traces and metrics data. The following chart illustrates how it works. The yellow parts in the chart represent the parts that need to be set up.
 
