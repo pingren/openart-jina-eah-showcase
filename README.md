@@ -1,6 +1,6 @@
 # ****GPU-Powered Jina AI Flows on GCP VMs: A Practical Guide****
 
-This is accompanying code for the talk "****GPU-Powered Jina AI Flows on GCP VMs: A Practical Guide****" at [Jina EAH Community Meetup](https://www.meetup.com/jina-community-meetup/events/291182236/).
+This is accompanying code and resources for the talk "****GPU-Powered Jina AI Flows on GCP VMs: A Practical Guide****" at [Jina EAH Community Meetup](https://www.meetup.com/jina-community-meetup/events/291182236/).
 
 - [View the slides online](https://tome.app/pingren/gpu-powered-jina-ai-flows-on-gcp-vms-a-practical-guide-cldcvhcmp15aq6j40jjw8bia7) 
 
@@ -38,7 +38,7 @@ This talk is for developers who have limited or no experience with cloud platfor
 ### What are benifits to use VM with GPU?
 
 1. It is relatively simple to create and manage Cloud VMs with GPUs, compared to other options.
-2. You can quickly test your GPU workflows on a VMwhich allows you to gain instant feedback and make adjustments as needed. This is very useful when you don't have access to a high-performance GPU in your development machine.
+2. You can quickly test your GPU workflows on a VM which allows you to gain instant feedback and make adjustments as needed. This is very useful when you don't have access to a high-performance GPU in your development machine.
 3. GCP can assit in scaling up your AI services with just a few clicks. This allows you to take your experiments and quickly turn them into production-ready services.
 
 Now let's dive into the code and demo. Please feel free to ask questions at any time in the chat. 
